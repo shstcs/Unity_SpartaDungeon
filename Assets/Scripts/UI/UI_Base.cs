@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Diagnostics;
 using UnityEngine.EventSystems;
@@ -58,7 +59,7 @@ public abstract class UI_Base : MonoBehaviour
     }
 
     protected GameObject GetObject(int idx) { return Get<GameObject>(idx); } // 오브젝트로서 가져오기
-    protected Text GetText(int idx) { return Get<Text>(idx); } // Text로서 가져오기
+    protected TMP_Text GetText(int idx) { return Get<TMP_Text>(idx); } // Text로서 가져오기
     protected Button GetButton(int idx) { return Get<Button>(idx); } // Button로서 가져오기
     protected Image GetImage(int idx) { return Get<Image>(idx); } // Image로서 가져오기
 }

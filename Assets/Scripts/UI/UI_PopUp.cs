@@ -6,18 +6,11 @@ public class UI_PopUp : UI_Base
 {
     public override void Init()
     {
-        throw new System.NotImplementedException();
+        Managers.UI.SetCanvas(gameObject, true);
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public virtual void ClosePopupUI()  // 팝업이니까 고정 캔버스(Scene)과 다르게 닫는게 필요
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Managers.UI.ClosePopupUI(this);
     }
 }
