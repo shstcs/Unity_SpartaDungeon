@@ -26,12 +26,6 @@ public class GameManager : MonoBehaviour
         Debug.Log($"현재 가지고 있는 아이템 {Managers.Player.ShowInven().Length}개");
     }
 
-
-    void Update()
-    {
-        
-    }
-
     private void ShowTitle()
     {
         Managers.UI.ShowSceneUI<UI_Main>("MainCanvas");

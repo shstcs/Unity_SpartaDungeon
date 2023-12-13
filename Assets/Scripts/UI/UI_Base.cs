@@ -34,7 +34,10 @@ public abstract class UI_Base : MonoBehaviour
     public static void BindEvent(GameObject go, Action<PointerEventData> action, Define.UIEvent type = Define.UIEvent.Click)
     {
         UI_EventHandler evt = Util.GetOrAddComponent<UI_EventHandler>(go);
-
+        if(go.GetComponent<Image>() != null)
+        {
+            string ItemName = go.GetComponent<Image>().name;
+        }
         switch (type)
         {
             case Define.UIEvent.Click:
@@ -48,6 +51,18 @@ public abstract class UI_Base : MonoBehaviour
                 break;
         }
     }
+    //public static void BindItemEvent(GameObject go, Action<PointerEventData, Item> action, Define.UIEvent type = Define.UIEvent.Click)
+    //{
+    //    UI_EventHandler evt = Util.GetOrAddComponent<UI_EventHandler>(go);
+    //    switch (type)
+    //    {
+    //        case Define.UIEvent.Click:
+    //            evt.OnItemClickHandler -= action; // »§Ω√≥™ ¿ÃπÃ ¿÷¿ª±Ó∫¡ ª©¡‹
+    //            evt.OnItemClickHandler += action;
+    //            break;
+
+    //    }
+    //}
 
     protected T Get<T>(int idx) where T : UnityEngine.Object
     {

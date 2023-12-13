@@ -17,4 +17,10 @@ public static class Extension
     {
         UI_Base.BindEvent(go, action, type);
     }
+    //public static void BindItemEvent(this GameObject go, Action<PointerEventData,Item> action, Define.UIEvent type = Define.UIEvent.Click)
+    //{
+    //    UI_Base.BindItemEvent(go, action, type);
+    //}
+
+
 }

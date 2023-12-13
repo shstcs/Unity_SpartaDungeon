@@ -69,18 +69,22 @@ public class UI_Inven : UI_PopUp
 
         for (int i = 0; i < items.Length; i++)
         {
+            //GetImage((int)Images.Item1 + i).gameObject.BindEvent((PointerEventData data) => Managers.ItemManager.SelectItem(items[i]));
             GetImage((int)Images.Item1 + i).gameObject.BindEvent(ShowEquip);
         }
         SetItems();
     }
+
     private void ShowEquip(PointerEventData data)
     {
-        Item choiceItemName = items[0];
+        string clickObjectName = data.pointerCurrentRaycast.gameObject.name;
+        int clickItemNumber = int.Parse(clickObjectName.Substring(clickObjectName.Length - 1)) - 1;
+        Item choiceItemName = items[clickItemNumber];
         if (choiceItemName != null)
         {
             Managers.ItemManager.SelectItem(choiceItemName);
-            Debug.Log(Managers.ItemManager.GetItem(choiceItemName).IsEquip);
         }
+        else Debug.Log("item is null");
 
         Managers.UI.ShowPopupUI<UI_Equip>("EquipCanvas");
     }
