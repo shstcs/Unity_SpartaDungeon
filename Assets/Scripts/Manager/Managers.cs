@@ -31,8 +31,10 @@ public class Managers : MonoBehaviour
     private readonly UIManager _ui = new();
     private readonly ResourceManager _resource = new();
     private readonly ItemManager _itemManager = new();
+    private readonly Player _player = new("Enos");
 
     public static UIManager UI => Instance._ui;
     public static ResourceManager Resource => Instance._resource;
     public static ItemManager ItemManager => Instance._itemManager;
+    public static Player Player => Instance._player;
 }

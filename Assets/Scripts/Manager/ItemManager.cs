@@ -6,7 +6,7 @@ using UnityEngine;
 public class ItemManager : MonoBehaviour
 {
     private Dictionary<string, Item> items = new Dictionary<string, Item>();
-    public string currentItem { get; private set; }
+    public Item currentItem { get; private set; }
     public event Action ItemEquiped;
     public void AddItem(string name, Item item)
     {
@@ -19,10 +19,16 @@ public class ItemManager : MonoBehaviour
         else return null;
     }
 
-    public void SelectItem(string itemName)
+    public Item GetItem(Item item)
     {
-        if (itemName == null) return;
-        currentItem = itemName;
+        if (items.ContainsKey(item.Name)) return items[item.Name];
+        else return null;
+    }
+
+    public void SelectItem(Item item)
+    {
+        if (item == null) return;
+        currentItem = item;
     }
 
     public void ClearCurrentItem()
@@ -30,4 +36,10 @@ public class ItemManager : MonoBehaviour
         ItemEquiped?.Invoke();
         currentItem = null;
     }
+
+    public bool CheckEquip(string itemName)
+    {
+        return items[itemName].IsEquip;
+    }
+
 }

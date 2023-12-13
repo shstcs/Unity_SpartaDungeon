@@ -17,11 +17,13 @@ public class UI_Equip : UI_PopUp
     {
         Background,
         ItemImage
-           
+
     }
     enum Texts
     {
-        ItemName
+        ItemName,
+        ItemDescription,
+        EquipText
     }
 
     private void Start()
@@ -41,22 +43,25 @@ public class UI_Equip : UI_PopUp
         GetButton((int)Buttons.CancelButton).gameObject.BindEvent(CancelEquip);
         if (Managers.ItemManager.currentItem != null)
         {
-            Debug.Log(GetText((int)Texts.ItemName).text);
-            GetText((int)Texts.ItemName).text = Managers.ItemManager.GetItem(Managers.ItemManager.currentItem).Name;
+            Debug.Log(Managers.ItemManager.currentItem.Name);
+            GetText((int)Texts.ItemName).text = Managers.ItemManager.currentItem.Name;
+            GetImage((int)Images.ItemImage).sprite = Resources.Load<Sprite>("Images\\Items\\" + Managers.ItemManager.currentItem.Name);
+            GetText((int)Texts.ItemDescription).text = Managers.ItemManager.currentItem.Description;
+            GetText((int)Texts.EquipText).text = Managers.ItemManager.currentItem.IsEquip ? "UnEquip" : "Equip";
         }
         else Debug.Log("currentItem is null");
     }
 
     private void Equip(PointerEventData data)
     {
+        Debug.Log($"장착 전 공격력 : {Managers.Player.Atk}, 방어력 : {Managers.Player.Def}");
         Managers.ItemManager.GetItem(Managers.ItemManager.currentItem).Equip();
-        Managers.ItemManager.ClearCurrentItem();
+        Debug.Log($"장착 후 공격력 : {Managers.Player.Atk}, 방어력 : {Managers.Player.Def}");
         Managers.UI.ClosePopupUI(this);
     }
 
     private void CancelEquip(PointerEventData data)
     {
-        Managers.ItemManager.ClearCurrentItem();
         Managers.UI.ClosePopupUI(this);
     }
 }

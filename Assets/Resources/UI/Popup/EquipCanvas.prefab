@@ -229,7 +229,7 @@ GameObject:
   - component: {fileID: 8684661459571312052}
   - component: {fileID: 4846354496157135738}
   m_Layer: 5
-  m_Name: Text
+  m_Name: EquipText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

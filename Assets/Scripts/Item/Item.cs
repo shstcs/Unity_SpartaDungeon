@@ -7,6 +7,8 @@ public class Item
     protected readonly string name;
     public string Name { get { return name; } }
     protected readonly int plusStat;
+    protected readonly string description;
+    public string Description { get { return description; } }
     private bool isEquip = false;
     public bool IsEquip
     {
@@ -20,10 +22,11 @@ public class Item
     {
         isEquip = Equip;
     }
-    public Item(string _name, int _plusStat)
+    public Item(string _name, int _plusStat, string _description)
     {
         name = _name;
         plusStat = _plusStat;
+        description = _description;
     }
     public virtual void Equip() { }
 }

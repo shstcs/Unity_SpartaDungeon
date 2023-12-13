@@ -4,25 +4,21 @@ using UnityEngine;
 
 public class Weapon : Item
 {
-    private bool isEquip = false;
-    private int plusStat;
-
-    public Weapon(string _name, int _plusStat) : base(_name, _plusStat)
+    public Weapon(string _name, int _plusStat, string _description) : base(_name, _plusStat, _description)
     {
     }
 
-    public bool Equip()
+    public override void Equip()
     {
-        if(isEquip)
+        if(IsEquip)
         {
-            //TODO 플레이어 스탯 내림
-            isEquip = false;
+            Managers.Player.Atk -= plusStat;
+            SetEquip(false);
         }
         else
         {
-            //TODO 플레이어 스탯 올림
-            isEquip = true;
+            Managers.Player.Atk += plusStat;
+            SetEquip(true);
         }
-        return isEquip;
     }
 }
