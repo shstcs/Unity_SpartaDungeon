@@ -8,12 +8,45 @@
 https://github.com/shstcs/Unity_SpartaDungeon/assets/73222781/21e3624b-d18b-49c2-9030-b0903ef1fda1
 
 
-# 도전했던 것
-## 지난 프로젝트 발표에서 본 UI Binding을 도전해 보았다.(일단 작동은 거의 됨)
-1. 각 Canvas마다 따로 Prefab을 만든 후 필요할 때마다 불러서 사용하였다.
+# 세부 구현 기능
+## UI Binding.
+1. 각 UI의 Canvas마다 따로 Prefab을 만든 후 필요할 때마다 불러서 사용하였다.
 2. Popup과 Scene을 분리하여 다르게 처리하였다.
-3. GetComponent를 복잡하게 사용하지 않고 enum타입을 이용해 직관적으로 찾을 수 있도록 했다.
+3. GetComponent를 복잡하게 사용하지 않고 enum타입을 이용해 직관적으로 찾을 수 있도록 하였다.
+```
+enum Buttons
+{
+    BackButton
+}
+enum Images
+{
+    Character,
+    CharacterPanel,
+    StatPanel
+}
+enum Texts
+{
+    IDText,
+    LevelText,
+    atkValue,
+    defValue,
+    HPValue,
+    criValue
+}
+```
+```
+Bind<Button>(typeof(Buttons));
+Bind<Image>(typeof(Images));
+Bind<TMP_Text>(typeof(Texts));
 
+GetText((int)Texts.IDText).text = Managers.Player.UserName;
+GetText((int)Texts.LevelText).text = Managers.Player.Level.ToString();
+GetText((int)Texts.atkValue).text = Managers.Player.Atk.ToString();
+GetText((int)Texts.defValue).text = Managers.Player.Def.ToString();
+GetText((int)Texts.HPValue).text = Managers.Player.HP.ToString();
+GetText((int)Texts.criValue).text = Managers.Player.Critical.ToString();
+GetButton((int)Buttons.BackButton).gameObject.BindEvent(ShowTitle);
+```
 ## Managers
 1. Managers라는 클래스를 만들어 여러 매니저들을 가지고 있게 하였다.
 
@@ -55,3 +88,7 @@ public class Managers : MonoBehaviour
 }
 
 ```
+# 얻은 것
+- UI의 Prefab화.
+- Find를 사용하지 않고 UI를 접근할 수 있는 방법.
+- Singleton을 사용한 Manager 구조 구현
